@@ -1,4 +1,4 @@
-import { api } from "encore.dev/api";
+import { api, APIError } from "encore.dev/api";
 import { SQLDatabase } from "encore.dev/storage/sqldb";
 import { randomBytes } from "node:crypto";
 
@@ -24,5 +24,18 @@ export const shorten = api(
     `;
 
     return { id, url };
+  }
+);
+
+export const get = api(
+  { expose: true, auth: false, method: "GET", path: "/url/:id" },
+  async ({ id }: { id: string }): Promise<URL> => {
+    const row = await db.queryRow`
+      SELECT original_url FROM url WHERE id = ${id}
+    `;
+
+    if (!row) throw APIError.notFound("url not found");
+
+    return { id, url: row.original_url };
   }
 );

@@ -1,4 +1,4 @@
-# Empty Encore TS Template
+# URL Shortener Service
 
 ## Developing locally
 
@@ -9,6 +9,7 @@ encore app create my-app-name --example=ts/empty
 ```
 
 ## Running locally
+
 ```bash
 encore run
 ```
@@ -22,7 +23,7 @@ Deploy your application to a staging environment in Encore's free development cl
 ```bash
 git add -A .
 git commit -m 'Commit message'
-git push encore
+git push
 ```
 
 Then head over to the [Cloud Dashboard](https://app.encore.dev) to monitor your deployment and find your production URL.
